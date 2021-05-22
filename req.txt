@@ -1,0 +1,11 @@
+Hello,
+The task is to write a pair of applications - the server and the client that performs authorization using the "UDP port knocking" method in Java. The program is supposed to work only as a console application (print information on the console).
+In a private message, I can send more details.
+
+First, start the server process. This process opens the number of UDP ports set by the parameter, and then starts listening on them for packets from clients. If the correct sequence of UDP packets sent from this one address (the same IP address and port) is detected, it opens a randomly selected TCP port and sends a UDP message to the address from which these packets came, with the number of this TCP port. Then it waits for a TCP connection and after completing simple communication (query-reply type) it disconnects and then starts again
+listen on UDP ports.
+The client application takes the server address and port numbers to "knock" as parameters. After starting, it opens a UDP port, from which it sends a series of packets to subsequent ports specified as parameters. After sending them, it waits for a message
+return containing the number of the TCP port with which it then establishes a connection.
+After performing a simple communication with the server (query-response type), it hangs up and exits.
+If the UDP packet sequence is incorrect, no reply will come from the server.
+In such a case, after a specified timeout, the client finishes its work with an error message.
